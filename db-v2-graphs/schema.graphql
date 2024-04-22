@@ -1,0 +1,125 @@
+type AddMargin @entity(immutable: true) {
+  id: Bytes!
+  DegenBaseV1_id: BigInt! # uint256
+  user: Bytes! # address
+  margin: BigInt! # uint256
+  newMargin: BigInt! # uint256
+  newLeverage: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ClosePosition @entity(immutable: true) {
+  id: Bytes!
+  orderId: BigInt! # uint256
+  user: Bytes! # address
+  entry: BigInt! # uint256
+  exit: BigInt! # uint256
+  currency: Bytes! # address
+  marketId: BigInt! # uint256
+  isLong: Boolean! # bool
+  leverage: BigInt! # uint256
+  margin: BigInt! # uint256
+  isActive: Boolean! # bool
+  pnl: BigInt! # uint256
+  earning: BigInt! # uint256
+  isLiquidated: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FeeGenerated @entity(immutable: true) {
+  id: Bytes!
+  amount: BigInt! # uint256
+  currency: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type LiquidatedOrder @entity(immutable: true) {
+  id: Bytes!
+  orderId: BigInt! # uint256
+  user: Bytes! # address
+  entry: BigInt! # uint256
+  exit: BigInt! # uint256
+  currency: Bytes! # address
+  marketId: BigInt! # uint256
+  isLong: Boolean! # bool
+  margin: BigInt! # uint256
+  takeProfit: BigInt! # uint256
+  stopLoss: BigInt! # uint256
+  pnl: BigInt! # uint256
+  earning: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OpenOrder @entity(immutable: true) {
+  id: Bytes!
+  positionId: BigInt! # uint256
+  user: Bytes! # address
+  marketId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PositionCreated @entity(immutable: true) {
+  id: Bytes!
+  orderId: BigInt! # uint256
+  user: Bytes! # address
+  currency: Bytes! # address
+  marketId: BigInt! # uint256
+  entry: BigInt! # uint256
+  isLong: Boolean! # bool
+  leverage: BigInt! # uint256
+  orderType: BigInt! # uint256
+  margin: BigInt! # uint256
+  takeProfit: BigInt! # uint256
+  stopLoss: BigInt! # uint256
+  isActive: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ReduceMargin @entity(immutable: true) {
+  id: Bytes!
+  DegenBaseV1_id: BigInt! # uint256
+  user: Bytes! # address
+  margin: BigInt! # uint256
+  newMargin: BigInt! # uint256
+  newLeverage: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type closedPositionsData @entity(immutable: true) {
+  id: Bytes!
+  orderId: BigInt! # uint256
+  user: Bytes! # address
+  entry: BigInt! # uint256
+  exit: BigInt! # uint256
+  margin: BigInt! # uint256
+  currency: Bytes! # address
+  takeProfit: BigInt! # uint256
+  stopLoss: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

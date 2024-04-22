@@ -1,0 +1,1154 @@
+[
+  {
+    "inputs": [
+      { "internalType": "address", "name": "pythContract", "type": "address" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "margin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newMargin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newLeverage",
+        "type": "uint256"
+      }
+    ],
+    "name": "AddMargin",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "entry",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "exit",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "currency",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "marketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isLong",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "leverage",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "margin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isActive",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "pnl",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "earning",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isLiquidated",
+        "type": "bool"
+      }
+    ],
+    "name": "ClosePosition",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "currency",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "FeeGenerated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "entry",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "exit",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "currency",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "marketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isLong",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "margin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "takeProfit",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stopLoss",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "pnl",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "earning",
+        "type": "uint256"
+      }
+    ],
+    "name": "LiquidatedOrder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "positionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "marketId",
+        "type": "uint256"
+      }
+    ],
+    "name": "OpenOrder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "currency",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "marketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "entry",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isLong",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "leverage",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderType",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "margin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "takeProfit",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stopLoss",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isActive",
+        "type": "bool"
+      }
+    ],
+    "name": "PositionCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "margin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newMargin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newLeverage",
+        "type": "uint256"
+      }
+    ],
+    "name": "ReduceMargin",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "entry",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "exit",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "margin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "currency",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "takeProfit",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stopLoss",
+        "type": "uint256"
+      }
+    ],
+    "name": "closedPositionsData",
+    "type": "event"
+  },
+  { "stateMutability": "payable", "type": "fallback" },
+  {
+    "inputs": [],
+    "name": "BPS_DIVIDER",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "Store",
+    "outputs": [
+      { "internalType": "contract DataStore", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UNIT",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "priceFeedId", "type": "bytes32" }
+    ],
+    "name": "_getPythPrice",
+    "outputs": [
+      { "internalType": "uint256", "name": "", "type": "uint256" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "uint256", "name": "amount", "type": "uint256" },
+      {
+        "internalType": "bytes[]",
+        "name": "priceUpdateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "addMargin",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "api3Feed",
+    "outputs": [
+      {
+        "internalType": "contract DataFeedReader",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "orderId", "type": "uint256" }
+    ],
+    "name": "checkLiquidation",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "orderId", "type": "uint256" },
+      {
+        "internalType": "bytes[]",
+        "name": "priceUpdateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "closeTrade",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "token", "type": "address" }
+    ],
+    "name": "currencyData",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "token", "type": "address" },
+          { "internalType": "uint256", "name": "minMargin", "type": "uint256" },
+          { "internalType": "uint256", "name": "maxMargin", "type": "uint256" },
+          { "internalType": "bool", "name": "supported", "type": "bool" }
+        ],
+        "internalType": "struct DataStore.CurrenciesData",
+        "name": "currencies",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "fee",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "fundingTracker",
+    "outputs": [{ "internalType": "int256", "name": "", "type": "int256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+      { "internalType": "address", "name": "currency", "type": "address" },
+      { "internalType": "uint256", "name": "intervals", "type": "uint256" }
+    ],
+    "name": "getAccruedFunding",
+    "outputs": [{ "internalType": "int256", "name": "", "type": "int256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllOrders",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "orderId", "type": "uint256" },
+          { "internalType": "address", "name": "user", "type": "address" },
+          { "internalType": "address", "name": "currency", "type": "address" },
+          { "internalType": "string", "name": "market", "type": "string" },
+          { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "bool", "name": "isLong", "type": "bool" },
+          { "internalType": "uint256", "name": "leverage", "type": "uint256" },
+          { "internalType": "uint8", "name": "orderType", "type": "uint8" },
+          { "internalType": "uint256", "name": "margin", "type": "uint256" },
+          { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "takeProfit",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "stopLoss", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" }
+        ],
+        "internalType": "struct DataStore.OrderData[]",
+        "name": "_orders",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "getEarning",
+    "outputs": [
+      { "internalType": "uint256", "name": "earning", "type": "uint256" },
+      { "internalType": "uint256", "name": "pnl", "type": "uint256" },
+      { "internalType": "bool", "name": "", "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getLimitOrders",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "orderId", "type": "uint256" },
+          { "internalType": "address", "name": "user", "type": "address" },
+          { "internalType": "address", "name": "currency", "type": "address" },
+          { "internalType": "string", "name": "market", "type": "string" },
+          { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "bool", "name": "isLong", "type": "bool" },
+          { "internalType": "uint256", "name": "leverage", "type": "uint256" },
+          { "internalType": "uint8", "name": "orderType", "type": "uint8" },
+          { "internalType": "uint256", "name": "margin", "type": "uint256" },
+          { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "takeProfit",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "stopLoss", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" }
+        ],
+        "internalType": "struct DataStore.OrderData[]",
+        "name": "_orders",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "orderIds", "type": "uint256[]" }
+    ],
+    "name": "getLiquidateablePositions",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "isLiquidatable",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "getMarket",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "marketType",
+            "type": "uint256"
+          },
+          { "internalType": "string", "name": "symbol", "type": "string" },
+          { "internalType": "bytes32", "name": "pythFeed", "type": "bytes32" },
+          {
+            "internalType": "uint256",
+            "name": "maxLeverage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minLeverage",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "maxOI", "type": "uint256" },
+          { "internalType": "uint256", "name": "fee", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "fundingFactor",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "minSize", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "maxDeviation",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct DataStore.MarketData",
+        "name": "market",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "token", "type": "address" }
+    ],
+    "name": "getMaxMargin",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "token", "type": "address" }
+    ],
+    "name": "getMinMargin",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+      { "internalType": "address", "name": "currency", "type": "address" }
+    ],
+    "name": "getOILong",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+      { "internalType": "address", "name": "currency", "type": "address" }
+    ],
+    "name": "getOIShort",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "getOrder",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "orderId", "type": "uint256" },
+          { "internalType": "address", "name": "user", "type": "address" },
+          { "internalType": "address", "name": "currency", "type": "address" },
+          { "internalType": "string", "name": "market", "type": "string" },
+          { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "bool", "name": "isLong", "type": "bool" },
+          { "internalType": "uint256", "name": "leverage", "type": "uint256" },
+          { "internalType": "uint8", "name": "orderType", "type": "uint8" },
+          { "internalType": "uint256", "name": "margin", "type": "uint256" },
+          { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "takeProfit",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "stopLoss", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" }
+        ],
+        "internalType": "struct DataStore.OrderData",
+        "name": "_orders",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "getOrderUPL",
+    "outputs": [
+      { "internalType": "int256", "name": "upl", "type": "int256" },
+      { "internalType": "bool", "name": "isNegative", "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes[]",
+        "name": "priceUpdateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "getPriceBytes",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "marketId", "type": "uint256" }
+    ],
+    "name": "getPythPrice",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" }
+    ],
+    "name": "getUserOrdersFromStore",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "orderId", "type": "uint256" },
+          { "internalType": "address", "name": "user", "type": "address" },
+          { "internalType": "address", "name": "currency", "type": "address" },
+          { "internalType": "string", "name": "market", "type": "string" },
+          { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "bool", "name": "isLong", "type": "bool" },
+          { "internalType": "uint256", "name": "leverage", "type": "uint256" },
+          { "internalType": "uint8", "name": "orderType", "type": "uint8" },
+          { "internalType": "uint256", "name": "margin", "type": "uint256" },
+          { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "takeProfit",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "stopLoss", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" }
+        ],
+        "internalType": "struct DataStore.OrderData[]",
+        "name": "_users",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "user", "type": "address" }
+    ],
+    "name": "getUserPositionsWithUpls",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "orderId", "type": "uint256" },
+          { "internalType": "address", "name": "user", "type": "address" },
+          { "internalType": "address", "name": "currency", "type": "address" },
+          { "internalType": "string", "name": "market", "type": "string" },
+          { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "bool", "name": "isLong", "type": "bool" },
+          { "internalType": "uint256", "name": "leverage", "type": "uint256" },
+          { "internalType": "uint8", "name": "orderType", "type": "uint8" },
+          { "internalType": "uint256", "name": "margin", "type": "uint256" },
+          { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "takeProfit",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "stopLoss", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" }
+        ],
+        "internalType": "struct DataStore.OrderData[]",
+        "name": "_positions",
+        "type": "tuple[]"
+      },
+      { "internalType": "int256[]", "name": "_upls", "type": "int256[]" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "token", "type": "address" }
+    ],
+    "name": "getUtilization",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "gov",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_store", "type": "address" }
+    ],
+    "name": "link",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "orderId", "type": "uint256" },
+      {
+        "internalType": "bytes[]",
+        "name": "priceUpdateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "liquidateOrders",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "liquidationThreshold",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maxLeverage",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "minMargin",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "name": "poolShare",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "orderIds", "type": "uint256[]" },
+      {
+        "internalType": "bytes[]",
+        "name": "priceUpdateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "processLimitOrders",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pyth",
+    "outputs": [
+      { "internalType": "contract IPyth", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address payable", "name": "_to", "type": "address" }
+    ],
+    "name": "recoverEther",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "router",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_g", "type": "address" }],
+    "name": "setKeeper",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "t", "type": "uint256" }],
+    "name": "setLiquidation",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "sender", "type": "address" },
+      {
+        "internalType": "bytes[]",
+        "name": "priceUpdateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "setPrices",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_p", "type": "address" }],
+    "name": "setPyth",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_router", "type": "address" }
+    ],
+    "name": "setRouter",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_treasury", "type": "address" }
+    ],
+    "name": "setTreasury",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "val", "type": "uint256" }],
+    "name": "setUtilizaitonMultiplier",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "size",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "orderId", "type": "uint256" },
+          { "internalType": "address", "name": "user", "type": "address" },
+          { "internalType": "address", "name": "currency", "type": "address" },
+          { "internalType": "string", "name": "market", "type": "string" },
+          { "internalType": "uint256", "name": "marketId", "type": "uint256" },
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "bool", "name": "isLong", "type": "bool" },
+          { "internalType": "uint256", "name": "leverage", "type": "uint256" },
+          { "internalType": "uint8", "name": "orderType", "type": "uint8" },
+          { "internalType": "uint256", "name": "margin", "type": "uint256" },
+          { "internalType": "uint256", "name": "timestamp", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "takeProfit",
+            "type": "uint256"
+          },
+          { "internalType": "uint256", "name": "stopLoss", "type": "uint256" },
+          { "internalType": "bool", "name": "isActive", "type": "bool" }
+        ],
+        "internalType": "struct DataStore.OrderData",
+        "name": "orderData",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "priceUpdateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "submitTrade",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "treasury",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "name": "updateShare",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "utilizationMultiplier",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  { "stateMutability": "payable", "type": "receive" }
+]

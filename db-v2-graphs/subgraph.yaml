@@ -1,0 +1,50 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DegenBaseV1
+    network: base
+    source:
+      address: "0xf2D012f604F43e927DA3B3576C9C0cAFe301428B"
+      abi: DegenBaseV1
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddMargin
+        - ClosePosition
+        - FeeGenerated
+        - LiquidatedOrder
+        - OpenOrder
+        - OwnershipTransferred
+        - PositionCreated
+        - ReduceMargin
+        - closedPositionsData
+      abis:
+        - name: DegenBaseV1
+          file: ./abis/DegenBaseV1.json
+      eventHandlers:
+        - event: AddMargin(indexed uint256,indexed address,uint256,uint256,uint256)
+          handler: handleAddMargin
+        - event: ClosePosition(uint256,address,uint256,uint256,address,uint256,bool,uint256,uint256,bool,uint256,uint256,bool)
+          handler: handleClosePosition
+        - event: FeeGenerated(uint256,indexed address,uint256)
+          handler: handleFeeGenerated
+        - event: LiquidatedOrder(uint256,address,uint256,uint256,address,uint256,bool,uint256,uint256,uint256,uint256,uint256)
+          handler: handleLiquidatedOrder
+        - event: OpenOrder(indexed uint256,indexed address,indexed uint256)
+          handler: handleOpenOrder
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PositionCreated(uint256,indexed address,indexed address,uint256,uint256,bool,uint256,uint256,uint256,uint256,uint256,bool)
+          handler: handlePositionCreated
+        - event: ReduceMargin(indexed uint256,indexed address,uint256,uint256,uint256)
+          handler: handleReduceMargin
+        - event: closedPositionsData(uint256,address,uint256,uint256,uint256,address,uint256,uint256)
+          handler: handleclosedPositionsData
+      file: ./src/degen-base-v-1.ts
