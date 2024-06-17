@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0xf2D012f604F43e927DA3B3576C9C0cAFe301428B"
       abi: DegenBaseV1
-      startBlock: 0
+      startBlock: 11787705
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
